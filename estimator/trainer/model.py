@@ -139,44 +139,12 @@ UNUSED_COLUMNS = set(CSV_COLUMNS) - {col.name for col in INPUT_COLUMNS} - \
 
 
 def build_estimator(config, embedding_size=8, hidden_units=None):
-  """Build a wide and deep model for predicting income category.
-
-  Wide and deep models use deep neural nets to learn high level abstractions
-  about complex features or interactions between such features.
-  These models then combined the outputs from the DNN with a linear regression
-  performed on simpler features. This provides a balance between power and
-  speed that is effective on many structured data problems.
-
-  You can read more about wide and deep models here:
-  https://research.googleblog.com/2016/06/wide-deep-learning-better-together-with.html
-
-  To define model we can use the prebuilt DNNCombinedLinearClassifier class,
-  and need only define the data transformations particular to our dataset, and
-  then
-  assign these (potentially) transformed features to either the DNN, or linear
-  regression portion of the model.
-
-  Args:
-    config: tf.contrib.learn.RunConfig defining the runtime environment for the
-      estimator (including model_dir).
-    embedding_size: int, the number of dimensions used to represent categorical
-      features when providing them as inputs to the DNN.
-    hidden_units: [int], the layer sizes of the DNN (input layer first)
-    learning_rate: float, the learning rate for the optimizer.
-  Returns:
-    A DNNCombinedLinearClassifier
-  
-  (gender, race, education, marital_status, relationship,
-   workclass, occupation, native_country, age,
-   education_num, capital_gain, capital_loss, hours_per_week) = INPUT_COLUMNS
-"""
-  # Build an estimator.
 
 (Global.Variance,Global.Skewness,Global.Kurtosis,GLCM.Energy,GLCM.Contrast,GLCM.Entropy,GLCM.Homogeneity,GLCM.Correlation,GLCM.SumAverage,
 GLCM.Variance,GLCM.Dissimilarity,GLCM.AutoCorrelation,GLRLM.SRE,GLRLM.LRE,GLRLM.GLN,GLRLM.RLN,GLRLM.RP,GLRLM.LGRE,GLRLM.HGRE,GLRLM.SRLGE,GLRLM.SRHGE,
 GLRLM.LRLGE,GLRLM.LRHGE,GLRLM.GLV,GLRLM.RLV,GLSZM.SZE,GLSZM.LZE,GLSZM.GLN,GLSZM.ZSN,GLSZM.ZP,GLSZM.LGZE,GLSZM.HGZE,GLSZM.SZLGE,GLSZM.SZHGE,GLSZM.LZLGE,
 GLSZM.LZHGE,GLSZM.GLV,GLSZM.ZSV,NGTDM.Coarseness,NGTDM.Contrast,NGTDM.Busyness,NGTDM.Complexity,NGTDM.Strength) = INPUT_COLUMNS
-# Wide columns and deep columns.
+
 wide_columns = [
 Global.Variance,
 Global.Skewness,
