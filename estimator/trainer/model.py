@@ -184,24 +184,6 @@ GLSZM.LZHGE,GLSZM.GLV,GLSZM.ZSV,NGTDM.Coarseness,NGTDM.Contrast,NGTDM.Busyness,N
 
   # Wide columns and deep columns.
   wide_columns = [
-      # Interactions between different categorical features can also
-      # be added as new virtual features.
-     """ tf.feature_column.crossed_column(
-          ['education', 'occupation'], hash_bucket_size=int(1e4)),
-      tf.feature_column.crossed_column(
-          [age_buckets, race, 'occupation'], hash_bucket_size=int(1e6)),
-      tf.feature_column.crossed_column(
-          ['native_country', 'occupation'], hash_bucket_size=int(1e4)),
-      gender,
-      native_country,
-      education,
-      occupation,
-      workclass,
-      marital_status,
-      relationship,
-      age_buckets,
-    """
-
 Global.Variance,
 Global.Skewness,
 Global.Kurtosis,
@@ -217,24 +199,6 @@ GLCM.AutoCorrelation,
   ]
 
   deep_columns = [
-      """ # Use indicator columns for low dimensional vocabularies
-      tf.feature_column.indicator_column(workclass),
-      tf.feature_column.indicator_column(education),
-      tf.feature_column.indicator_column(marital_status),
-      tf.feature_column.indicator_column(gender),
-      tf.feature_column.indicator_column(relationship),
-      tf.feature_column.indicator_column(race),
-
-      # Use embedding columns for high dimensional vocabularies
-      tf.feature_column.embedding_column(
-          native_country, dimension=embedding_size),
-      tf.feature_column.embedding_column(occupation, dimension=embedding_size),
-      age,
-      education_num,
-      capital_gain,
-      capital_loss,
-      hours_per_week,
-"""
 GLRLM.SRE,
 GLRLM.LRE,
 GLRLM.GLN,
