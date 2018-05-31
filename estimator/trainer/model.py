@@ -196,12 +196,12 @@ deep_columns = [
 	NGTDM.Strength,
 ]
 
-return tf.estimator.DNNLinearCombinedClassifier(
-	config=config,
-	linear_feature_columns=wide_columns,
-   	dnn_feature_columns=deep_columns,
-        dnn_hidden_units=hidden_units or [100, 70, 50, 25]
-)
+	return tf.estimator.DNNLinearCombinedClassifier(
+		config=config,
+		linear_feature_columns=wide_columns,
+   		dnn_feature_columns=deep_columns,
+       		dnn_hidden_units=hidden_units or [100, 70, 50, 25]
+		)
 
 def parse_label_column(label_string_tensor):
   """Parses a string tensor into the label tensor
