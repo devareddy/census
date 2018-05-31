@@ -176,14 +176,8 @@ def build_estimator(config, embedding_size=8, hidden_units=None):
 GLCM.Variance,GLCM.Dissimilarity,GLCM.AutoCorrelation,GLRLM.SRE,GLRLM.LRE,GLRLM.GLN,GLRLM.RLN,GLRLM.RP,GLRLM.LGRE,GLRLM.HGRE,GLRLM.SRLGE,GLRLM.SRHGE,
 GLRLM.LRLGE,GLRLM.LRHGE,GLRLM.GLV,GLRLM.RLV,GLSZM.SZE,GLSZM.LZE,GLSZM.GLN,GLSZM.ZSN,GLSZM.ZP,GLSZM.LGZE,GLSZM.HGZE,GLSZM.SZLGE,GLSZM.SZHGE,GLSZM.LZLGE,
 GLSZM.LZHGE,GLSZM.GLV,GLSZM.ZSV,NGTDM.Coarseness,NGTDM.Contrast,NGTDM.Busyness,NGTDM.Complexity,NGTDM.Strength) = INPUT_COLUMNS
-
-  # Reused Transformations.
-  # Continuous columns can be converted to categorical via bucketization
-  #age_buckets = tf.feature_column.bucketized_column(
-    #  age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
-
-  # Wide columns and deep columns.
-  wide_columns = [
+# Wide columns and deep columns.
+wide_columns = [
 Global.Variance,
 Global.Skewness,
 Global.Kurtosis,
@@ -198,7 +192,7 @@ GLCM.Dissimilarity,
 GLCM.AutoCorrelation,
   ]
 
-  deep_columns = [
+deep_columns = [
 GLRLM.SRE,
 GLRLM.LRE,
 GLRLM.GLN,
