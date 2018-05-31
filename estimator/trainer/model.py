@@ -226,7 +226,7 @@ NGTDM.Complexity,
 NGTDM.Strength,
   ]
 
-  return tf.estimator.DNNLinearCombinedClassifier(
+return tf.estimator.DNNLinearCombinedClassifier(
       config=config,
       linear_feature_columns=wide_columns,
       dnn_feature_columns=deep_columns,
