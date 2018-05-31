@@ -357,4 +357,3 @@ def input_fn(filenames,
   iterator = dataset.make_one_shot_iterator()
   features = iterator.get_next()
   return features, parse_label_column(features.pop(LABEL_COLUMN))
-			
