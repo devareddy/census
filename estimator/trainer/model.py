@@ -22,7 +22,7 @@ import tensorflow as tf
 
 
 # Define the format of your input data including unused columns
-CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 'GLCMEntropy', 'GLCMHomogeneity', 'GLCMCorrelation','Mets']
+CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 'GLCMEntropy', 'GLCMHomogeneity', 'GLCMCorrelation', 'Mets']
 
 CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], ['']]
          #              [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
