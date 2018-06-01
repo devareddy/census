@@ -22,10 +22,10 @@ import tensorflow as tf
 
 
 # Define the format of your input data including unused columns
-CSV_COLUMNS = ['Global.Variance', 'Global.Skewness', 'Global.Kurtosis', 'GLCM.Energy', 'GLCM.Contrast', 'GLCM.Entropy', 'GLCM.Homogeneity', 'GLCM.Correlation',
-'GLCM.SumAverage', 'GLCM.Variance', 'GLCM.Dissimilarity', 'GLCM.AutoCorrelation', 'GLRLM.SRE', 'GLRLM.LRE', 'GLRLM.GLN', 'GLRLM.RLN', 'GLRLM.RP', 'GLRLM.LGRE', 'GLRLM.HGRE',
-'GLRLM.SRLGE', 'GLRLM.SRHGE', 'GLRLM.LRLGE', 'GLRLM.LRHGE', 'GLRLM.GLV', 'GLRLM.RLV', 'GLSZM.SZE', 'GLSZM.LZE', 'GLSZM.GLN', 'GLSZM.ZSN', 'GLSZM.ZP', 'GLSZM.LGZE', 'GLSZM.HGZE', 'GLSZM.SZLGE',
-'GLSZM.SZHGE', 'GLSZM.LZLGE', 'GLSZM.LZHGE', 'GLSZM.GLV', 'GLSZM.ZSV', 'NGTDM.Coarseness', 'NGTDM.Contrast', 'NGTDM.Busyness', 'NGTDM.Complexity', 'NGTDM.Strength', 'Mets']
+CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 'GLCMEntropy', 'GLCMHomogeneity', 'GLCMCorrelation',
+'GLCMSumAverage', 'GLCMVariance', 'GLCMDissimilarity', 'GLCMAutoCorrelation', 'GLRLMSRE', 'GLRLMLRE', 'GLRLMGLN', 'GLRLMRLN', 'GLRLMRP', 'GLRLMLGRE', 'GLRLMHGRE',
+'GLRLMSRLGE', 'GLRLMSRHGE', 'GLRLMLRLGE', 'GLRLMLRHGE', 'GLRLMGLV', 'GLRLMRLV', 'GLSZMSZE', 'GLSZMLZE', 'GLSZMGLN', 'GLSZMZSN', 'GLSZMZP', 'GLSZMLGZE', 'GLSZMHGZE', 'GLSZMSZLGE',
+'GLSZMSZHGE', 'GLSZMLZLGE', 'GLSZMLZHGE', 'GLSZMGLV', 'GLSZMZSV', 'NGTDMCoarseness', 'NGTDMContrast', 'NGTDMBusyness', 'NGTDMComplexity', 'NGTDMStrength', 'Mets']
 
 CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], [0],
                        [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
