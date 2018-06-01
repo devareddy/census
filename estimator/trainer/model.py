@@ -22,15 +22,12 @@ import tensorflow as tf
 
 
 # Define the format of your input data including unused columns
-CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 'GLCMEntropy', 'GLCMHomogeneity', 'GLCMCorrelation',
-'GLCMSumAverage', 'GLCMVariance', 'GLCMDissimilarity', 'GLCMAutoCorrelation', 'GLRLMSRE', 'GLRLMLRE', 'GLRLMGLN', 'GLRLMRLN', 'GLRLMRP', 'GLRLMLGRE', 'GLRLMHGRE',
-'GLRLMSRLGE', 'GLRLMSRHGE', 'GLRLMLRLGE', 'GLRLMLRHGE', 'GLRLMGLV', 'GLRLMRLV', 'GLSZMSZE', 'GLSZMLZE', 'GLSZMGLN', 'GLSZMZSN', 'GLSZMZP', 'GLSZMLGZE', 'GLSZMHGZE', 'GLSZMSZLGE',
-'GLSZMSZHGE', 'GLSZMLZLGE', 'GLSZMLZHGE', 'GLSZMGLV', 'GLSZMZSV', 'NGTDMCoarseness', 'NGTDMContrast', 'NGTDMBusyness', 'NGTDMComplexity', 'NGTDMStrength', 'Mets']
+CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 'GLCMEntropy', 'GLCMHomogeneity', 'GLCMCorrelation','Mets']
 
-CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], [0],
-                       [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
-               [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],[0], [0], [0],
-               [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], ['']]
+CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], ['']]
+         #              [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
+         #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],[0], [0], [0],
+         #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], ['']]
 
 #LABEL_COLUMN = 'income_bracket'
 #LABELS = [' <=50K', ' >50K']
@@ -52,41 +49,6 @@ INPUT_COLUMNS = [
     tf.feature_column.numeric_column('GLCMContrast'),
     tf.feature_column.numeric_column('GLCMEntropy'),
     tf.feature_column.numeric_column('GLCMHomogeneity'),
-    tf.feature_column.numeric_column('GLCMCorrelation'),
-    tf.feature_column.numeric_column('GLCMSumAverage'),
-    tf.feature_column.numeric_column('GLCMVariance'),
-    tf.feature_column.numeric_column('GLCMDissimilarity'),
-    tf.feature_column.numeric_column('GLCMAutoCorrelation'),
-    tf.feature_column.numeric_column('GLRLMSRE'),
-    tf.feature_column.numeric_column('GLRLMLRE'),
-    tf.feature_column.numeric_column('GLRLMGLN'),
-    tf.feature_column.numeric_column('GLRLMRLN'),
-    tf.feature_column.numeric_column('GLRLMRP'),
-    tf.feature_column.numeric_column('GLRLMLGRE'),
-    tf.feature_column.numeric_column('GLRLMHGRE'),
-    tf.feature_column.numeric_column('GLRLMSRLGE'),
-    tf.feature_column.numeric_column('GLRLMSRHGE'),
-    tf.feature_column.numeric_column('GLRLMLRLGE'),
-    tf.feature_column.numeric_column('GLRLMGLV'),
-    tf.feature_column.numeric_column('GLRLMRLV'),
-    tf.feature_column.numeric_column('GLSZMSZE'),
-    tf.feature_column.numeric_column('GLSZMLZE'),
-    tf.feature_column.numeric_column('GLSZMGLN'),
-    tf.feature_column.numeric_column('GLSZMZSN'),
-    tf.feature_column.numeric_column('GLSZMZP'),
-    tf.feature_column.numeric_column('GLSZMLGZE'),
-    tf.feature_column.numeric_column('GLSZMHGZE'),
-    tf.feature_column.numeric_column('GLSZMSZLGE'),
-    tf.feature_column.numeric_column('GLSZMSZHGE'),
-    tf.feature_column.numeric_column('GLSZMLZLGE'),
-    tf.feature_column.numeric_column('GLSZMLZHGE'),
-    tf.feature_column.numeric_column('GLSZMGLV'),
-    tf.feature_column.numeric_column('GLSZMZSV'),
-    tf.feature_column.numeric_column('NGTDMCoarseness'),
-    tf.feature_column.numeric_column('NGTDMContrast'),
-    tf.feature_column.numeric_column('NGTDMBusyness'),
-    tf.feature_column.numeric_column('NGTDMComplexity'),
-    tf.feature_column.numeric_column('NGTDMStrength'),
 ]
 
 UNUSED_COLUMNS = set(CSV_COLUMNS) - {col.name for col in INPUT_COLUMNS} - \
@@ -125,11 +87,7 @@ def build_estimator(config, embedding_size=8, hidden_units=None):
    workclass, occupation, native_country, age,
    education_num, capital_gain, capital_loss, hours_per_week) = INPUT_COLUMNS
   """
-  (GlobalVariance, GlobalSkewness, GlobalKurtosis, GLCMEnergy, GLCMContrast, GLCMEntropy, GLCMHomogeneity,
-  GLCMCorrelation, GLCMSumAverage, GLCMVariance, GLCMDissimilarity, GLCMAutoCorrelation, GLRLMSRE, GLRLMLRE, GLRLMGLN,
-  GLRLMRLN, GLRLMRP, GLRLMLGRE, GLRLMHGRE, GLRLMSRLGE, GLRLMSRHGE, GLRLMLRLGE, GLRLMLRHGE, GLRLMGLV, GLRLMRLV,
-  GLSZMSZE, GLSZMLZE, GLSZMGLN, GLSZMZSN, GLSZMZP, GLSZMLGZE, GLSZMHGZE, GLSZMSZLGE, GLSZMSZHGE, GLSZMLZLGE,
-  GLSZMLZHGE, GLSZMGLV, GLSZMZSV, NGTDMCoarseness, NGTDMContrast, NGTDMBusyness, NGTDMComplexity, NGTDMStrength) = INPUT_COLUMNS
+  (GlobalVariance, GlobalSkewness, GlobalKurtosis, GLCMEnergy, GLCMContrast, GLCMEntropy, GLCMHomogeneity) = INPUT_COLUMNS
   # Build an estimator.
 
   wide_columns = [
@@ -137,49 +95,17 @@ def build_estimator(config, embedding_size=8, hidden_units=None):
         GlobalVariance,
         GlobalSkewness,
         GlobalKurtosis,
+        
+  ]
+  deep_columns = [
+        
         GLCMEnergy,
         GLCMContrast,
         GLCMEntropy,
         GLCMHomogeneity,
-        GLCMCorrelation,
-        GLCMSumAverage,
-        GLCMVariance,
-        GLCMDissimilarity,
-        GLCMAutoCorrelation,
-  ]
-  deep_columns = [
 
-        GLRLMSRE,
-        GLRLMLRE,
-        GLRLMGLN,
-        GLRLMRLN,
-        GLRLMRP,
-        GLRLMLGRE,
-        GLRLMHGRE,
-        GLRLMSRLGE,
-        GLRLMSRHGE,
-        GLRLMLRLGE,
-        GLRLMLRHGE,
-        GLRLMGLV,
-        GLRLMRLV,
-        GLSZMSZE,
-        GLSZMLZE,
-        GLSZMGLN,
-        GLSZMZSN,
-        GLSZMZP,
-        GLSZMLGZE,
-        GLSZMHGZE,
-        GLSZMSZLGE,
-        GLSZMSZHGE,
-        GLSZMLZLGE,
-        GLSZMLZHGE,
-        GLSZMGLV,
-        GLSZMZSV,
-        NGTDMCoarseness,
-        NGTDMContrast,
-        NGTDMBusyness,
-        NGTDMComplexity,
-        NGTDMStrength,
+
+      
   ]
 
   return tf.estimator.DNNLinearCombinedClassifier(
@@ -314,3 +240,4 @@ def input_fn(filenames,
   iterator = dataset.make_one_shot_iterator()
   features = iterator.get_next()
   return features, parse_label_column(features.pop(LABEL_COLUMN))
+# -*- coding: utf-8 -*-
