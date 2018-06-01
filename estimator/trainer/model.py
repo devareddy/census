@@ -35,7 +35,7 @@ CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], [0],
 #LABEL_COLUMN = 'income_bracket'
 #LABELS = [' <=50K', ' >50K']
 LABEL_COLUMN = 'Mets'
-LABELS = ['0', '1']
+LABELS = [0, 1]
 
 # Define the initial ingestion of each feature used by your model.
 # Additionally, provide metadata about the feature.
