@@ -87,7 +87,6 @@ INPUT_COLUMNS = [
     tf.feature_column.numeric_column('NGTDMBusyness'),
     tf.feature_column.numeric_column('NGTDMComplexity'),
     tf.feature_column.numeric_column('NGTDMStrength'),
-    tf.feature_column.numeric_column('Mets'),
 ]
 
 UNUSED_COLUMNS = set(CSV_COLUMNS) - {col.name for col in INPUT_COLUMNS} - \
