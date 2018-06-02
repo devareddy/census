@@ -25,7 +25,7 @@ import tensorflow as tf
 CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 
                'GLCMEntropy', 'GLCMHomogeneity', 'income_bracket']
 
-CSV_COLUMN_DEFAULTS = [[0], [0], [0], [0], [0], [0], [0], ['']]
+CSV_COLUMN_DEFAULTS = [[0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], ['']]
          #              [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
          #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],[0], [0], [0],
          #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], ['']]
