@@ -22,9 +22,9 @@ import tensorflow as tf
 
 
 # Define the format of your input data including unused columns
-CSV_COLUMNS = ['gender' 'GlobalSkewness' 'GlobalVariance'	'GlobalKurtosis'	 'NGTDMCoarseness'
-               'LMRLV' 'GLCMCorrelation'	'GLRLMGLN' 'GLRLMRLN'	'GLRLMGLV' 'GLSZMGLN' 'GLSZMSZE'
-               'MSumAverage'	'GLRLMLRE'	 'GLSZMLZHGE'	'NGTDMStrength'	'Mets']
+CSV_COLUMNS = ['gender', 'GlobalSkewness', 'GlobalVariance', 'GlobalKurtosis', 'NGTDMCoarseness',
+               'LMRLV', 'GLCMCorrelation', 'GLRLMGLN', 'GLRLMRLN', 'GLRLMGLV', 'GLSZMGLN', 'GLSZMSZE'
+               'MSumAverage', 'GLRLMLRE', 'GLSZMLZHGE', 'NGTDMStrength', 'Mets']
         
 
 CSV_COLUMN_DEFAULTS = [[''], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0],
