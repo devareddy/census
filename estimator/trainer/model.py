@@ -22,18 +22,21 @@ import tensorflow as tf
 
 
 # Define the format of your input data including unused columns
-CSV_COLUMNS = ['GlobalVariance', 'GlobalSkewness', 'GlobalKurtosis', 'GLCMEnergy', 'GLCMContrast', 
-               'GLCMEntropy', 'GLCMHomogeneity', 'income_bracket']
+CSV_COLUMNS = ['gender' 'GlobalSkewness' 'GlobalVariance'	'GlobalKurtosis'	 'NGTDMCoarseness'
+               'LMRLV' 'GLCMCorrelation'	'GLRLMGLN' 'GLRLMRLN'	'GLRLMGLV' 'GLSZMGLN' 'GLSZMSZE'
+               'MSumAverage'	'GLRLMLRE'	 'GLSZMLZHGE'	'NGTDMStrength'	'Mets']
+        
 
-CSV_COLUMN_DEFAULTS = [[0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], ['']]
+CSV_COLUMN_DEFAULTS = [[''], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0],
+                       [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], ['']]
          #              [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
          #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],[0], [0], [0],
          #      [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], ['']]
 
-LABEL_COLUMN = 'income_bracket'
-LABELS = [' <=50K', ' >50K']
-#LABEL_COLUMN = 'Mets'
-#LABELS = [' yes', ' no']
+#LABEL_COLUMN = 'income_bracket'
+#LABELS = [' <=50K', ' >50K']
+LABEL_COLUMN = 'Mets'
+LABELS = ['yes', 'no']
 
 # Define the initial ingestion of each feature used by your model.
 # Additionally, provide metadata about the feature.
@@ -41,15 +44,25 @@ LABELS = [' <=50K', ' >50K']
 # Define the initial ingestion of each feature used by your model.
 # Additionally, provide metadata about the feature.
 INPUT_COLUMNS = [
-
+        
     # Continuous base columns.
-    tf.feature_column.numeric_column('GlobalVariance'),
+     tf.feature_column.categorical_column_with_vocabulary_list(
+        'gender', [' Female', ' Male']),
     tf.feature_column.numeric_column('GlobalSkewness'),
+    tf.feature_column.numeric_column('GlobalVariance'),
     tf.feature_column.numeric_column('GlobalKurtosis'),
-    tf.feature_column.numeric_column('GLCMEnergy'),
-    tf.feature_column.numeric_column('GLCMContrast'),
-    tf.feature_column.numeric_column('GLCMEntropy'),
-    tf.feature_column.numeric_column('GLCMHomogeneity'),
+    tf.feature_column.numeric_column('NGTDMCoarseness'),
+    tf.feature_column.numeric_column('LMRLV'),
+    tf.feature_column.numeric_column('GLCMCorrelation'),
+    tf.feature_column.numeric_column('GLRLMGLN'),
+    tf.feature_column.numeric_column('GLRLMRLN'),
+    tf.feature_column.numeric_column('GLRLMGLV'),
+    tf.feature_column.numeric_column('GLSZMGLN'),
+    tf.feature_column.numeric_column('GLSZMSZE'),
+    tf.feature_column.numeric_column('MSumAverage'),
+    tf.feature_column.numeric_column('GLRLMLRE'),
+    tf.feature_column.numeric_column('GLSZMLZHGE'),
+    tf.feature_column.numeric_column('NGTDMStrength'),
 ]
 
 UNUSED_COLUMNS = set(CSV_COLUMNS) - {col.name for col in INPUT_COLUMNS} - \
@@ -88,25 +101,36 @@ def build_estimator(config, embedding_size=8, hidden_units=None):
    workclass, occupation, native_country, age,
    education_num, capital_gain, capital_loss, hours_per_week) = INPUT_COLUMNS
   """
-  (GlobalVariance, GlobalSkewness, GlobalKurtosis, GLCMEnergy, GLCMContrast, GLCMEntropy, GLCMHomogeneity) = INPUT_COLUMNS
+  (gender, GlobalSkewness, GlobalVariance, GlobalKurtosis, NGTDMCoarseness, LMRLV,
+   GLCMCorrelation, GLRLMGLN, GLRLMRLN, GLRLMGLV, GLSZMGLN, GLSZMSZE, MSumAverage,
+   GLRLMLRE, GLSZMLZHGE, NGTDMStrength) = INPUT_COLUMNS
   # Build an estimator.
 
   wide_columns = [
 
-        GlobalVariance,
-        GlobalSkewness,
-        GlobalKurtosis,
+        gender,
         
   ]
+  
   deep_columns = [
-        
-        GLCMEnergy,
-        GLCMContrast,
-        GLCMEntropy,
-        GLCMHomogeneity,
 
-
-      
+       tf.feature_column.indicator_column(gender),
+       GlobalSkewness,
+       GlobalVariance, 
+       GlobalKurtosis, 
+       NGTDMCoarseness, 
+       LMRLV,
+       GLCMCorrelation, 
+       GLRLMGLN, 
+       GLRLMRLN, 
+       GLRLMGLV, 
+       GLSZMGLN, 
+       GLSZMSZE, 
+       MSumAverage,
+       GLRLMLRE,
+       GLSZMLZHGE,
+       NGTDMStrength,
+     
   ]
 
   return tf.estimator.DNNLinearCombinedClassifier(
@@ -241,4 +265,5 @@ def input_fn(filenames,
   iterator = dataset.make_one_shot_iterator()
   features = iterator.get_next()
   return features, parse_label_column(features.pop(LABEL_COLUMN))
+# -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
